@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         self.window = window
 
-        let viewController = ViewController()
+        let viewController = UINavigationController(rootViewController: ContactsViewController())
         window.rootViewController = viewController
         window.makeKeyAndVisible()
     }
