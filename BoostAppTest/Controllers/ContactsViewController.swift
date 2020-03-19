@@ -13,14 +13,25 @@ class ContactsViewController: BaseViewController {
     
     private var contactViewModels = [ContactViewModel]()
     
+    private let refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl(frame: .zero)
+        refreshControl.addTarget(self, action: #selector(fetchContacts), for: .valueChanged)
+        return refreshControl
+    }()
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero)
         tableView.tableFooterView = .init(frame: .zero)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(ContactCell.self, forCellReuseIdentifier: cellID)
+        tableView.refreshControl = refreshControl
         return tableView
     }()
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        endRefreshing()
+    }
     
     // MARK:- Helper methods
     
@@ -39,7 +50,7 @@ class ContactsViewController: BaseViewController {
         return documentsDirectory().appendingPathComponent("data.json")
     }
     
-    private func fetchContacts() {
+    @objc private func fetchContacts() {
 //        let path = dataFilePath()
         guard let mainUrl = Bundle.main.url(forResource: "data", withExtension: "json") else { return }
 //        do {
@@ -55,6 +66,13 @@ class ContactsViewController: BaseViewController {
             } catch {
                 print("Error decoding user array: \(error.localizedDescription)")
             }
+        }
+        endRefreshing()
+    }
+    
+    @objc private func endRefreshing() {
+        if refreshControl.isRefreshing {
+            refreshControl.endRefreshing()
         }
     }
     
@@ -77,8 +95,8 @@ class ContactsViewController: BaseViewController {
     }
     
     private func setupRightBarItem() {
-        let addButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed))
-        navigationItem.rightBarButtonItem = addButtonItem
+        let addBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed))
+        navigationItem.rightBarButtonItem = addBarButton
     }
 
     

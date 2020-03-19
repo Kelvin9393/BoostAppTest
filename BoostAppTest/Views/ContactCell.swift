@@ -43,7 +43,8 @@ class ContactCell: UITableViewCell {
         
         addSubview(stackView)
         
-        avatarView.anchor(widthAnchor: widthAnchor, widthMultiplier: 0.14, heightAnchor: avatarView.widthAnchor)
+        let avatarViewDimension = frame.width * 0.14
+        avatarView.anchor(size: .init(width: avatarViewDimension, height: avatarViewDimension))
         let horizontalPadding: CGFloat = 20
         let verticalPadding = frame.width * 0.021
         stackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: verticalPadding, left: horizontalPadding, bottom: verticalPadding, right: horizontalPadding))
