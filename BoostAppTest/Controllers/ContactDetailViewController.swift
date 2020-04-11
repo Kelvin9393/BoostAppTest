@@ -18,9 +18,15 @@ class ContactDetailViewController: UITableViewController {
     // MARK:- Properties
     
     enum ContactDetailSection: Int, CaseIterable {
-        case Avatar = 0
         case Main
         case Sub
+        
+        var title: String? {
+            switch self {
+            case .Main: return "Main Information"
+            case .Sub: return "Sub Information"
+            }
+        }
     }
     
     private let viewModel: ContactDetailViewModel
@@ -28,9 +34,8 @@ class ContactDetailViewController: UITableViewController {
     
     private var cellArr = [[UITableViewCell]]()
     
-    private let avatarCell: CustomInputFieldCell = {
-        let cell = CustomInputFieldCell(frame: .zero)
-        cell.selectionStyle = .none
+    private let headerView: UIView = {
+        let cell = UIView(frame: .zero)
         return cell
     }()
     
@@ -148,10 +153,11 @@ class ContactDetailViewController: UITableViewController {
     }
     
     private func setupAvatarView() {
-        avatarCell.addSubview(avatarView)
+        headerView.addSubview(avatarView)
         
         let avatarViewDimension = view.frame.width * 0.27
-        avatarView.anchor(top: avatarCell.topAnchor, bottom: avatarCell.bottomAnchor, padding: .init(top: view.frame.width * 0.04, left: 0, bottom: view.frame.width * 0.08, right: 0), size: .init(width: avatarViewDimension, height: avatarViewDimension), centerX: avatarCell.centerXAnchor)
+        avatarView.anchor(size: .init(width: avatarViewDimension, height: avatarViewDimension), centerX: headerView.centerXAnchor)
+        avatarView.centerYAnchor.constraint(equalTo: headerView.centerYAnchor, constant: -view.frame.width * 0.02).isActive = true
     }
     
     private func setupFields() {
@@ -182,8 +188,14 @@ class ContactDetailViewController: UITableViewController {
         hideKeyboardWhenTappedAround()
         setupLeftBarButtonItem()
         setupRightBarButtonItem()
-        tableView.register(ContactDetailSectionHeader.self, forHeaderFooterViewReuseIdentifier: ContactDetailSectionHeader.cellID)
+        setupTableView()
         initViewModel()
+    }
+    
+    func setupTableView() {
+        tableView.register(ContactDetailSectionHeader.self, forHeaderFooterViewReuseIdentifier: ContactDetailSectionHeader.cellID)
+        tableView.tableHeaderView = headerView
+        headerView.frame = .init(x: 0, y: 0, width: view.frame.width, height: view.frame.width * 0.4)
     }
     
     private func initViewModel() {
@@ -238,53 +250,46 @@ class ContactDetailViewController: UITableViewController {
 
 }
 
-extension ContactDetailViewController {
+// MARK: - TableViewDataSource / TableViewDelegate
 
-    // MARK: - TableViewDataSource / TableViewDelegate
+extension ContactDetailViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return ContactDetailSection.allCases.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? 1 : 2
+        return 2
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case ContactDetailSection.Avatar.rawValue:
-            return avatarCell
-        case ContactDetailSection.Main.rawValue:
+        
+        switch ContactDetailSection(rawValue: indexPath.section) {
+        case .Main:
             if indexPath.row == 0 {
                 return firstNameCell
             } else {
                 return lastNameCell
             }
-        default:
+        case .Sub:
             if indexPath.row == 0 {
                 return emailCell
             } else {
                 return phoneCell
             }
+        default:
+            return UITableViewCell()
         }
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 0 : 30
+        return 30
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ContactDetailSectionHeader.cellID) as? ContactDetailSectionHeader else { return nil }
-        
-        switch section {
-        case ContactDetailSection.Avatar.rawValue:
-            return nil
-        case ContactDetailSection.Main.rawValue:
-            header.title = "Main Information"
-        default:
-            header.title = "Sub Information"
-        }
-        return header
+        guard let sectionHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: ContactDetailSectionHeader.cellID) as? ContactDetailSectionHeader else { return nil }
+        sectionHeader.title = ContactDetailSection(rawValue: section)?.title
+        return sectionHeader
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
