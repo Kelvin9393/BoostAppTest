@@ -7,14 +7,16 @@
 
 import Foundation
 
-struct UserArray: Decodable {
-    var users = [Contact]()
-}
-
-struct Contact: Decodable {
-    var id: String = ""
-    var firstName: String = ""
-    var lastName: String = ""
+class Contact: NSObject, Codable {
+    let id: String
+    var firstName: String
+    var lastName: String
     var email: String?
     var phone: String?
+    
+    init(firstName: String, lastName: String) {
+        self.id = "5c8a80f5\(String.randomAlphaNumericString(length: 16))"
+        self.firstName = firstName
+        self.lastName = lastName
+    }
 }

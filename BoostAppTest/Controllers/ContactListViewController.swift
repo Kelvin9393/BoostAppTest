@@ -13,8 +13,8 @@ class ContactListViewController: BaseViewController {
     
     private let cellID = "ContactCell"
     
-    private var viewModel: ContactsViewModel = {
-        return ContactsViewModel()
+    private let viewModel: ContactListViewModel = {
+        return ContactListViewModel()
     }()
     
     private let refreshControl: UIRefreshControl = {
@@ -49,14 +49,17 @@ class ContactListViewController: BaseViewController {
         navigateToContactDetail()
     }
     
-    @objc private func handleSavingData() {
-        viewModel.saveData()
-    }
-    
-    private func navigateToContactDetail(contactViewModel: ContactViewModel? = nil) {
-        let contactDetailVC = ContactDetailViewController(style: .grouped)
+    private func navigateToContactDetail(contact: Contact? = nil) {
+        
+        let contactDetailVC: ContactDetailViewController
+        
+        if let contact = contact {
+            contactDetailVC = ContactDetailViewController(config: .edit(contact))
+        } else {
+            contactDetailVC = ContactDetailViewController(config: .add)
+        }
+        
         contactDetailVC.delegate = self
-        contactDetailVC.contactViewModelToEdit = contactViewModel
         navigationController?.pushViewController(contactDetailVC, animated: true)
     }
     
@@ -87,39 +90,43 @@ class ContactListViewController: BaseViewController {
 
     private func initViewModel() {
         
-        viewModel.updateFetchingStatus = {[weak self] in
+        viewModel.updateRefreshControl = { [weak self] (isFetching) in
             DispatchQueue.main.async {
-                if let weakSelf = self {
-                    if weakSelf.viewModel.isFetching {
-                        weakSelf.refreshControl.beginRefreshing()
-                    } else {
-                        weakSelf.refreshControl.perform(#selector(weakSelf.endRefreshing), with: nil, afterDelay: 0)
-                    }
+                guard let weakSelf = self else { return }
+                if isFetching {
+                    weakSelf.refreshControl.beginRefreshing()
+                } else {
+                    weakSelf.refreshControl.perform(#selector(weakSelf.endRefreshing), with: nil, afterDelay: 0)
                 }
             }
         }
         
-        viewModel.reloadTableViewClosure = {[weak self] indexPaths in
+        viewModel.reloadTableViewClosure = { [weak self] (indexPaths) in
             DispatchQueue.main.async {
-                if let weakSelf = self {
-                    if let indexPaths = indexPaths {
-                        weakSelf.tableView.reloadRows(at: indexPaths, with: .automatic)
-                    } else {
-                        weakSelf.tableView.reloadData()
-                    }
+                guard let weakSelf = self else { return }
+                if let indexPaths = indexPaths {
+                    weakSelf.tableView.reloadRows(at: indexPaths, with: .automatic)
+                } else {
+                    weakSelf.tableView.reloadData()
                 }
             }
         }
         
-        viewModel.deleteRowsClosure = { [weak self] indexPaths in
+        viewModel.insertRowsClosure = { [weak self] (indexPaths) in
             DispatchQueue.main.async {
-                if let weakSelf = self {
-                    weakSelf.tableView.deleteRows(at: indexPaths, with: .automatic)
-                }
+                guard let weakSelf = self else { return }
+                weakSelf.tableView.insertRows(at: indexPaths, with: .automatic)
             }
         }
+        
+        viewModel.deleteRowsClosure = { [weak self] (indexPaths) in
+            DispatchQueue.main.async {
+                guard let weakSelf = self else { return }
+                weakSelf.tableView.deleteRows(at: indexPaths, with: .automatic)
+            }
+        }
+        
     }
-    
 }
 
 extension ContactListViewController: UITableViewDataSource, UITableViewDelegate {
@@ -129,13 +136,13 @@ extension ContactListViewController: UITableViewDataSource, UITableViewDelegate 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! ContactCell
-        cell.contactViewModel = viewModel.getItem(atIndexPath: indexPath)
+        cell.contactCellViewModel = viewModel.getCellViewModel(atIndexPath: indexPath)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        navigateToContactDetail(contactViewModel: viewModel.getItem(atIndexPath: indexPath))
+        navigateToContactDetail(contact: viewModel.getCellViewModel(atIndexPath: indexPath).contact)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -149,13 +156,12 @@ extension ContactListViewController: ContactDetailViewControllerDelegate {
         navigationController?.popViewController(animated: true)
     }
     
-    func contactDetailViewController(_ controller: ContactDetailViewController, didFinishAdding contactVM: ContactViewModel) {
-        viewModel.didAddNewItem(contactViewModel: contactVM)
+    func contactDetailViewController(_ controller: ContactDetailViewController, didFinishAdding contact: Contact) {
+        viewModel.didAddItem(contact: contact)
         navigationController?.popViewController(animated: true)
     }
-    
-    func contactDetailViewController(_ controller: ContactDetailViewController, didFinishEditing contactVM: ContactViewModel) {
-        viewModel.didEditItem(contactViewModel: contactVM)
+    func contactDetailViewController(_ controller: ContactDetailViewController, didFinishEditing contact: Contact) {
+        viewModel.didEditItem(contact: contact)
         navigationController?.popViewController(animated: true)
     }
     

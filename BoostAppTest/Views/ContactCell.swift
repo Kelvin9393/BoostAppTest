@@ -9,9 +9,9 @@ import UIKit
 
 class ContactCell: UITableViewCell {
     
-    var contactViewModel: ContactViewModel! {
+    var contactCellViewModel: ContactCellViewModel! {
         didSet {
-            fullNameLabel.text = contactViewModel.fullName
+            fullNameLabel.text = contactCellViewModel.fullName
         }
     }
     

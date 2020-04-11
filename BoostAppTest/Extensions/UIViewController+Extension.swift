@@ -20,17 +20,4 @@ extension UIViewController {
         view.endEditing(true)
     }
     
-    func switchChildController(from oldVC: UIViewController, to newVC: UIViewController, duration: TimeInterval = 0.3, options: UIView.AnimationOptions = .transitionCrossDissolve, animations: (() -> Void)? = nil, completion: (() -> Void)? = nil) {
-        
-        oldVC.willMove(toParent: nil)
-        addChild(newVC)
-        
-        transition(from: oldVC, to: newVC, duration: duration, options: options, animations: animations) {
-            [weak self] (finished) in
-            oldVC.removeFromParent()
-            newVC.didMove(toParent: self)
-            completion?()
-        }
-    }
-    
 }

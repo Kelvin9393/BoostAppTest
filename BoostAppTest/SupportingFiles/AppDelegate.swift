@@ -54,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let window = UIWindow(frame: UIScreen.main.bounds)
             self.window = window
 
-            let viewController = UINavigationController(rootViewController: ContactsViewController())
+            let viewController = UINavigationController(rootViewController: ContactListViewController())
             window.rootViewController = viewController
         }
 
