@@ -250,7 +250,7 @@ class ContactDetailViewController: UITableViewController {
 
 }
 
-// MARK: - TableViewDataSource / TableViewDelegate 
+// MARK: - TableViewDataSource / TableViewDelegate
 
 extension ContactDetailViewController {
 
