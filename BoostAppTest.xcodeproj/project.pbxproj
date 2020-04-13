@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4917F3DD244423AA0021560B /* BoostAppTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4917F3DC244423AA0021560B /* BoostAppTestTests.swift */; };
 		49272BE42440221B004A9F10 /* ContactDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49272BE32440221B004A9F10 /* ContactDetailViewModel.swift */; };
 		4928A32B2422480C004144E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928A32A2422480C004144E0 /* AppDelegate.swift */; };
 		4928A32D2422480C004144E0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928A32C2422480C004144E0 /* SceneDelegate.swift */; };
@@ -31,7 +32,20 @@
 		49887F76242764B80079C7B2 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49887F75242764B80079C7B2 /* String+Extension.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		4917F3DF244423AA0021560B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4928A31F2422480C004144E0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4928A3262422480C004144E0;
+			remoteInfo = BoostAppTest;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		4917F3DA244423AA0021560B /* BoostAppTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BoostAppTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4917F3DC244423AA0021560B /* BoostAppTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoostAppTestTests.swift; sourceTree = "<group>"; };
+		4917F3DE244423AA0021560B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49272BE32440221B004A9F10 /* ContactDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailViewModel.swift; sourceTree = "<group>"; };
 		4928A3272422480C004144E0 /* BoostAppTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoostAppTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4928A32A2422480C004144E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +73,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4917F3D7244423AA0021560B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4928A3242422480C004144E0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -69,10 +90,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4917F3DB244423AA0021560B /* BoostAppTestTests */ = {
+			isa = PBXGroup;
+			children = (
+				4917F3DC244423AA0021560B /* BoostAppTestTests.swift */,
+				4917F3DE244423AA0021560B /* Info.plist */,
+			);
+			path = BoostAppTestTests;
+			sourceTree = "<group>";
+		};
 		4928A31E2422480C004144E0 = {
 			isa = PBXGroup;
 			children = (
 				4928A3292422480C004144E0 /* BoostAppTest */,
+				4917F3DB244423AA0021560B /* BoostAppTestTests */,
 				4928A3282422480C004144E0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -81,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				4928A3272422480C004144E0 /* BoostAppTest.app */,
+				4917F3DA244423AA0021560B /* BoostAppTestTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -198,6 +230,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4917F3D9244423AA0021560B /* BoostAppTestTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4917F3E3244423AA0021560B /* Build configuration list for PBXNativeTarget "BoostAppTestTests" */;
+			buildPhases = (
+				4917F3D6244423AA0021560B /* Sources */,
+				4917F3D7244423AA0021560B /* Frameworks */,
+				4917F3D8244423AA0021560B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4917F3E0244423AA0021560B /* PBXTargetDependency */,
+			);
+			name = BoostAppTestTests;
+			productName = BoostAppTestTests;
+			productReference = 4917F3DA244423AA0021560B /* BoostAppTestTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		4928A3262422480C004144E0 /* BoostAppTest */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4928A33824224813004144E0 /* Build configuration list for PBXNativeTarget "BoostAppTest" */;
@@ -221,9 +271,13 @@
 		4928A31F2422480C004144E0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1130;
+				LastSwiftUpdateCheck = 1140;
 				LastUpgradeCheck = 1130;
 				TargetAttributes = {
+					4917F3D9244423AA0021560B = {
+						CreatedOnToolsVersion = 11.4;
+						TestTargetID = 4928A3262422480C004144E0;
+					};
 					4928A3262422480C004144E0 = {
 						CreatedOnToolsVersion = 11.3.1;
 					};
@@ -243,11 +297,19 @@
 			projectRoot = "";
 			targets = (
 				4928A3262422480C004144E0 /* BoostAppTest */,
+				4917F3D9244423AA0021560B /* BoostAppTestTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4917F3D8244423AA0021560B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4928A3252422480C004144E0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -261,6 +323,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4917F3D6244423AA0021560B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4917F3DD244423AA0021560B /* BoostAppTestTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4928A3232422480C004144E0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -289,6 +359,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		4917F3E0244423AA0021560B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4928A3262422480C004144E0 /* BoostAppTest */;
+			targetProxy = 4917F3DF244423AA0021560B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		4928A33224224813004144E0 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -301,6 +379,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4917F3E1244423AA0021560B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ATE3429LZ6;
+				INFOPLIST_FILE = BoostAppTestTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kelvin.BoostAppTestTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BoostAppTest.app/BoostAppTest";
+			};
+			name = Debug;
+		};
+		4917F3E2244423AA0021560B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ATE3429LZ6;
+				INFOPLIST_FILE = BoostAppTestTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kelvin.BoostAppTestTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BoostAppTest.app/BoostAppTest";
+			};
+			name = Release;
+		};
 		4928A33624224813004144E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -454,6 +574,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4917F3E3244423AA0021560B /* Build configuration list for PBXNativeTarget "BoostAppTestTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4917F3E1244423AA0021560B /* Debug */,
+				4917F3E2244423AA0021560B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4928A3222422480C004144E0 /* Build configuration list for PBXProject "BoostAppTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
