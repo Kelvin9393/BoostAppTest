@@ -24,9 +24,7 @@
 		4928A35524229213004144E0 /* ContactCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928A35424229213004144E0 /* ContactCellViewModel.swift */; };
 		4928A35724229C39004144E0 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928A35624229C39004144E0 /* ContactCell.swift */; };
 		4928A35924229CB0004144E0 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928A35824229CB0004144E0 /* AvatarView.swift */; };
-		4928A35B24239996004144E0 /* ContactDetailSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928A35A24239996004144E0 /* ContactDetailSectionHeader.swift */; };
 		4928A35D2423B8AC004144E0 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928A35C2423B8AC004144E0 /* CustomTextField.swift */; };
-		4928A35F2423BEF8004144E0 /* CustomInputFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928A35E2423BEF8004144E0 /* CustomInputFieldCell.swift */; };
 		49659A1B242A2E8700095C70 /* ContactListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49659A1A242A2E8700095C70 /* ContactListViewModel.swift */; };
 		49887F7424267A960079C7B2 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49887F7324267A960079C7B2 /* DataService.swift */; };
 		49887F76242764B80079C7B2 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49887F75242764B80079C7B2 /* String+Extension.swift */; };
@@ -64,9 +62,7 @@
 		4928A35424229213004144E0 /* ContactCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCellViewModel.swift; sourceTree = "<group>"; };
 		4928A35624229C39004144E0 /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
 		4928A35824229CB0004144E0 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
-		4928A35A24239996004144E0 /* ContactDetailSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailSectionHeader.swift; sourceTree = "<group>"; };
 		4928A35C2423B8AC004144E0 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
-		4928A35E2423BEF8004144E0 /* CustomInputFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputFieldCell.swift; sourceTree = "<group>"; };
 		49659A1A242A2E8700095C70 /* ContactListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListViewModel.swift; sourceTree = "<group>"; };
 		49887F7324267A960079C7B2 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		49887F75242764B80079C7B2 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -194,8 +190,6 @@
 			children = (
 				4928A35824229CB0004144E0 /* AvatarView.swift */,
 				4928A35624229C39004144E0 /* ContactCell.swift */,
-				4928A35A24239996004144E0 /* ContactDetailSectionHeader.swift */,
-				4928A35E2423BEF8004144E0 /* CustomInputFieldCell.swift */,
 				4928A35C2423B8AC004144E0 /* CustomTextField.swift */,
 			);
 			path = Views;
@@ -341,7 +335,6 @@
 				4928A35524229213004144E0 /* ContactCellViewModel.swift in Sources */,
 				4928A32B2422480C004144E0 /* AppDelegate.swift in Sources */,
 				49659A1B242A2E8700095C70 /* ContactListViewModel.swift in Sources */,
-				4928A35F2423BEF8004144E0 /* CustomInputFieldCell.swift in Sources */,
 				4928A35924229CB0004144E0 /* AvatarView.swift in Sources */,
 				4928A34024224A9A004144E0 /* UIView+Extension.swift in Sources */,
 				4928A34B24224F1E004144E0 /* Colors.swift in Sources */,
@@ -349,7 +342,6 @@
 				49272BE42440221B004A9F10 /* ContactDetailViewModel.swift in Sources */,
 				49887F76242764B80079C7B2 /* String+Extension.swift in Sources */,
 				4928A34124224A9A004144E0 /* UIViewController+Extension.swift in Sources */,
-				4928A35B24239996004144E0 /* ContactDetailSectionHeader.swift in Sources */,
 				4928A351242264BF004144E0 /* ContactDetailViewController.swift in Sources */,
 				4928A32D2422480C004144E0 /* SceneDelegate.swift in Sources */,
 				4928A34424224ACC004144E0 /* BaseViewController.swift in Sources */,

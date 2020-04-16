@@ -39,24 +39,23 @@ class ContactDetailViewController: UITableViewController {
         return cell
     }()
     
-    private let firstNameCell: CustomInputFieldCell = {
-        let cell = CustomInputFieldCell(frame: .zero)
+    private let firstNameCell: UITableViewCell = {
+        let cell = UITableViewCell(frame: .zero)
         return cell
     }()
     
-    private let lastNameCell: CustomInputFieldCell = {
-        let cell = CustomInputFieldCell(frame: .zero)
+    private let lastNameCell: UITableViewCell = {
+        let cell = UITableViewCell(frame: .zero)
         return cell
     }()
     
-    private let emailCell: CustomInputFieldCell = {
-        let cell = CustomInputFieldCell(frame: .zero)
+    private let emailCell: UITableViewCell = {
+        let cell = UITableViewCell(frame: .zero)
         return cell
     }()
     
     private let phoneCell: UITableViewCell = {
         let cell = UITableViewCell(frame: .zero)
-        cell.separatorInset = .init(top: 0, left: 15, bottom: 0, right: 0)
         return cell
     }()
     
@@ -105,7 +104,7 @@ class ContactDetailViewController: UITableViewController {
     
     init(config: ContactDetailConfiguration) {
         viewModel = ContactDetailViewModel(config: config)
-        super.init(style: .grouped)
+        super.init(style: .plain)
     }
     
     required init?(coder: NSCoder) {
@@ -170,11 +169,15 @@ class ContactDetailViewController: UITableViewController {
             let label = UILabel(frame: .zero)
             label.text = labelTitles[i]
             label.font = UIFont.systemFont(ofSize: 16)
+            
             let cell = cells[i]
-            let textField = textFields[i]
             cell.selectionStyle = .none
+            
+            let textField = textFields[i]
             textField.delegate = self
+            
             let stackView = UIStackView(arrangedSubviews: [label, textField])
+            
             cell.addSubview(stackView)
             stackView.anchor(leading: cell.leadingAnchor, trailing: cell.trailingAnchor, padding: .init(top: 0, left: 15, bottom: 0, right: 15), centerY: cell.centerYAnchor)
             label.anchor(size: .init(width: 90, height: 0))
@@ -193,9 +196,10 @@ class ContactDetailViewController: UITableViewController {
     }
     
     func setupTableView() {
-        tableView.register(ContactDetailSectionHeader.self, forHeaderFooterViewReuseIdentifier: ContactDetailSectionHeader.cellID)
         tableView.tableHeaderView = headerView
         headerView.frame = .init(x: 0, y: 0, width: view.frame.width, height: view.frame.width * 0.4)
+        tableView.separatorInset = .init(top: 0, left: 15, bottom: 0, right: 0)
+        tableView.tableFooterView = .init(frame: .zero)
     }
     
     private func initViewModel() {
@@ -282,22 +286,8 @@ extension ContactDetailViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
-    }
-    
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let sectionHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: ContactDetailSectionHeader.cellID) as? ContactDetailSectionHeader else { return nil }
-        sectionHeader.title = ContactDetailSection(rawValue: section)?.title
-        return sectionHeader
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return .leastNormalMagnitude
-    }
-
-    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return .init(frame: .zero)
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return ContactDetailSection(rawValue: section)?.title
     }
     
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {

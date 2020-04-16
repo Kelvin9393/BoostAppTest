@@ -21,7 +21,7 @@ class CustomTextField: UITextField {
     private func setupViews() {
         font = UIFont.systemFont(ofSize: 16)
         layer.borderWidth = 1
-        layer.borderColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
+        layer.borderColor = UIColor.groupTableViewBackground.cgColor
         layer.cornerRadius = 6
         let paddingView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 0))
         leftView = paddingView
